@@ -1,10 +1,17 @@
 package dev.patika.Quixotic95.model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class VisitingResearcher extends Instructor {
 
     private double hourlySalary;
 
     public VisitingResearcher() {
+    }
+
+    public VisitingResearcher(double hourlySalary) {
+        this.hourlySalary = hourlySalary;
     }
 
     public VisitingResearcher(String name, String address, String phoneNumber, double hourlySalary) {
@@ -18,5 +25,12 @@ public class VisitingResearcher extends Instructor {
 
     public void setHourlySalary(double hourlySalary) {
         this.hourlySalary = hourlySalary;
+    }
+
+    @Override
+    public String toString() {
+        return "VisitingResearcher{" +
+                "hourlySalary=" + hourlySalary +
+                '}';
     }
 }

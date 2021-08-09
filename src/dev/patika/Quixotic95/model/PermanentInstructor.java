@@ -1,10 +1,17 @@
 package dev.patika.Quixotic95.model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class PermanentInstructor extends Instructor {
 
     private double fixedSalary;
 
     public PermanentInstructor() {
+    }
+
+    public PermanentInstructor(double fixedSalary) {
+        this.fixedSalary = fixedSalary;
     }
 
     public PermanentInstructor(String name, String address, String phoneNumber, double fixedSalary) {
@@ -18,5 +25,12 @@ public class PermanentInstructor extends Instructor {
 
     public void setFixedSalary(double fixedSalary) {
         this.fixedSalary = fixedSalary;
+    }
+
+    @Override
+    public String toString() {
+        return "PermanentInstructor{" +
+                "fixedSalary=" + fixedSalary +
+                '}';
     }
 }
