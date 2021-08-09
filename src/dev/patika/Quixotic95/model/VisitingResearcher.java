@@ -1,4 +1,4 @@
-package dev.patika.Quixotic95.models;
+package dev.patika.Quixotic95.model;
 
 public class VisitingResearcher extends Instructor {
 
