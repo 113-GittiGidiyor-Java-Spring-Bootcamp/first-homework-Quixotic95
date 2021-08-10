@@ -73,6 +73,10 @@ public class Instructor {
         this.instructorCourses = instructorCourses;
     }
 
+    public int getId() {
+        return id;
+    }
+
     @Override
     public String toString() {
         return "Instructor{" +
