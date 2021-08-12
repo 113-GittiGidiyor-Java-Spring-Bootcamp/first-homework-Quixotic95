@@ -23,7 +23,11 @@ public class StudentController {
     }
 
     public void deleteStudentById(int studentId) {
-        studentService.delete(studentId);
+        studentService.deleteById(studentId);
+    }
+
+    public void deleteStudent(Student student) {
+        studentService.delete(student);
     }
 
     public void updateStudent(Student student, int studentId) {
