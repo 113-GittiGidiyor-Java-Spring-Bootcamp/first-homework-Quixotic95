@@ -10,7 +10,9 @@ public interface CrudRepository<T> {
 
     void save(T object);
 
-    void delete(int id);
+    void deleteById(int id);
+
+    void delete(T object);
 
     void update(T object, int id);
 
