@@ -29,8 +29,13 @@ public class PermanentInstructor extends Instructor {
 
     @Override
     public String toString() {
-        return "PermanentInstructor{" +
-                "fixedSalary=" + fixedSalary +
+        return "Instructor{" +
+                "name='" + getName() + '\'' +
+                ", address='" + getAddress() + '\'' +
+                ", phoneNumber='" + getPhoneNumber() + '\'' +
+                ", [PermanentInstructor{" +
+                    "fixedSalary=" + fixedSalary +
+                    "}]" +
                 '}';
     }
 }

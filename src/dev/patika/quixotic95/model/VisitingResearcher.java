@@ -29,8 +29,13 @@ public class VisitingResearcher extends Instructor {
 
     @Override
     public String toString() {
-        return "VisitingResearcher{" +
-                "hourlySalary=" + hourlySalary +
+        return "Instructor{" +
+                "name='" + getName() + '\'' +
+                ", address='" + getAddress() + '\'' +
+                ", phoneNumber='" + getPhoneNumber() + '\'' +
+                ", [VisitingResearcher{" +
+                    "hourlySalary=" + hourlySalary +
+                    "}]" +
                 '}';
     }
 }
