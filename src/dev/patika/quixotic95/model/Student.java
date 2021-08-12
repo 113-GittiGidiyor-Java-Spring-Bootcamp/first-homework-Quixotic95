@@ -1,4 +1,4 @@
-package dev.patika.Quixotic95.model;
+package dev.patika.quixotic95.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
