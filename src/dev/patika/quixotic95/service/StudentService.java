@@ -11,7 +11,7 @@ import java.util.List;
 
 public class StudentService implements CrudRepository<Student>, StudentRepository {
 
-    final EntityManager em = EntityManagerUtil.getEntityManager("mysqlPU");
+    private final EntityManager em = EntityManagerUtil.getEntityManager("mysqlPU");
 
     @Override
     public Student findById(int id) {
@@ -39,11 +39,27 @@ public class StudentService implements CrudRepository<Student>, StudentRepositor
     }
 
     @Override
-    public void delete(int id) {
+    public void deleteById(int id) {
         try {
             em.getTransaction().begin();
 
             Student foundStudent = em.find(Student.class, id);
+            em.remove(foundStudent);
+
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        } finally {
+            EntityManagerUtil.closeEntityManager(em);
+        }
+    }
+
+    @Override
+    public void delete(Student student) {
+        try {
+            em.getTransaction().begin();
+
+            Student foundStudent = find(student);
             em.remove(foundStudent);
 
             em.getTransaction().commit();
