@@ -1,23 +1,18 @@
-package dev.patika.Quixotic95.service;
+package dev.patika.quixotic95.service;
 
-import dev.patika.Quixotic95.repository.CourseRepository;
-import dev.patika.Quixotic95.repository.CrudRepository;
-import dev.patika.Quixotic95.model.Course;
-import dev.patika.Quixotic95.model.Instructor;
-import dev.patika.Quixotic95.model.Student;
-import dev.patika.Quixotic95.utility.EntityManagerUtil;
+import dev.patika.quixotic95.repository.CourseRepository;
+import dev.patika.quixotic95.repository.CrudRepository;
+import dev.patika.quixotic95.model.Course;
+import dev.patika.quixotic95.model.Instructor;
+import dev.patika.quixotic95.model.Student;
+import dev.patika.quixotic95.utility.EntityManagerUtil;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
 public class CourseService implements CrudRepository<Course>, CourseRepository {
 
-    EntityManager em = EntityManagerUtil.getEntityManager("mysqlPU");
-
-    @Override
-    public List<Course> findAll() {
-        return em.createQuery("from Course", Course.class).getResultList();
-    }
+    final EntityManager em = EntityManagerUtil.getEntityManager("mysqlPU");
 
     @Override
     public Course findById(int id) {
@@ -25,8 +20,8 @@ public class CourseService implements CrudRepository<Course>, CourseRepository {
     }
 
     @Override
-    public Course find(Course course) {
-        return em.createQuery("from Course c WHERE c.courseCode =:courseCode", Course.class).setParameter("courseCode", course.getCourseCode()).getSingleResult();
+    public List<Course> findAll() {
+        return em.createQuery("from Course", Course.class).getResultList();
     }
 
     @Override
@@ -61,22 +56,6 @@ public class CourseService implements CrudRepository<Course>, CourseRepository {
     }
 
     @Override
-    public void delete(Course course) {
-        try {
-            em.getTransaction().begin();
-
-            Course foundCourse = em.createQuery("from Course c WHERE c.courseCode =:courseCode", Course.class).setParameter("courseCode", course.getCourseCode()).getSingleResult();
-            em.remove(foundCourse);
-
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            em.getTransaction().rollback();
-        } finally {
-            EntityManagerUtil.closeEntityManager(em);
-        }
-    }
-
-    @Override
     public void update(Course course, int id) {
         try {
             em.getTransaction().begin();
@@ -94,6 +73,10 @@ public class CourseService implements CrudRepository<Course>, CourseRepository {
         } finally {
             EntityManagerUtil.closeEntityManager(em);
         }
+    }
+
+    public Course find(Course course) {
+        return em.find(Course.class, course.getId());
     }
 
     @Override

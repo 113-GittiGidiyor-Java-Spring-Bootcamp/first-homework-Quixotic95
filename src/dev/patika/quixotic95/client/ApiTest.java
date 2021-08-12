@@ -1,18 +1,43 @@
-package dev.patika.Quixotic95.client;
+package dev.patika.quixotic95.client;
 
-import dev.patika.Quixotic95.model.*;
-import dev.patika.Quixotic95.utility.EntityManagerUtil;
+import dev.patika.quixotic95.controller.StudentController;
+import dev.patika.quixotic95.model.*;
+import dev.patika.quixotic95.utility.EntityManagerUtil;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.List;
 
 public class ApiTest {
 
     public static void main(String[] args) {
-        saveTestData();
+
+        if (isDatabaseEmpty()) {
+            saveTestData();
+            System.out.println("Test data saved.");
+        }
+
+        StudentController studentController = new StudentController();
+
+
+        List<Student> students = studentController.findAllStudents();
+        for(Student student : students) {
+            System.out.println(student);
+        }
+
+        List<Course> courses = studentController.findStudentCoursesById(3);
+        for(Course course : courses) {
+            System.out.println(course);
+        }
+
+        System.exit(0);
     }
 
+    private static boolean isDatabaseEmpty() {
+        EntityManager em = EntityManagerUtil.getEntityManager("mysqlPU");
+        return em.createQuery("from Course", Course.class).getResultList().size() == 0;
+    }
 
     private static void saveTestData() {
 

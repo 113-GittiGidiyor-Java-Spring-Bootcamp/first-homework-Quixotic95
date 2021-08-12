@@ -1,22 +1,17 @@
-package dev.patika.Quixotic95.service;
+package dev.patika.quixotic95.service;
 
-import dev.patika.Quixotic95.repository.CrudRepository;
-import dev.patika.Quixotic95.repository.StudentRepository;
-import dev.patika.Quixotic95.model.Course;
-import dev.patika.Quixotic95.model.Student;
-import dev.patika.Quixotic95.utility.EntityManagerUtil;
+import dev.patika.quixotic95.repository.CrudRepository;
+import dev.patika.quixotic95.repository.StudentRepository;
+import dev.patika.quixotic95.model.Course;
+import dev.patika.quixotic95.model.Student;
+import dev.patika.quixotic95.utility.EntityManagerUtil;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
 public class StudentService implements CrudRepository<Student>, StudentRepository {
 
-    EntityManager em = EntityManagerUtil.getEntityManager("mysqlPU");
-
-    @Override
-    public List<Student> findAll() {
-        return em.createQuery("from Student", Student.class).getResultList();
-    }
+    final EntityManager em = EntityManagerUtil.getEntityManager("mysqlPU");
 
     @Override
     public Student findById(int id) {
@@ -24,8 +19,8 @@ public class StudentService implements CrudRepository<Student>, StudentRepositor
     }
 
     @Override
-    public Student find(Student student) {
-        return em.createQuery("from Student s WHERE s.id =:id", Student.class).setParameter("id", student.getId()).getSingleResult();
+    public List<Student> findAll() {
+        return em.createQuery("from Student", Student.class).getResultList();
     }
 
     @Override
@@ -60,22 +55,6 @@ public class StudentService implements CrudRepository<Student>, StudentRepositor
     }
 
     @Override
-    public void delete(Student student) {
-        try {
-            em.getTransaction().begin();
-
-            Student foundStudent = em.createQuery("from Student s WHERE s.id =:id", Student.class).setParameter("id", student.getId()).getSingleResult();
-            em.remove(foundStudent);
-
-            em.getTransaction().commit();
-        } catch (Exception e) {
-            em.getTransaction().rollback();
-        } finally {
-            EntityManagerUtil.closeEntityManager(em);
-        }
-    }
-
-    @Override
     public void update(Student student, int id) {
         try {
             em.getTransaction().begin();
@@ -94,6 +73,15 @@ public class StudentService implements CrudRepository<Student>, StudentRepositor
         } finally {
             EntityManagerUtil.closeEntityManager(em);
         }
+    }
+
+    public Student find(Student student) {
+        return em.find(Student.class, student.getId());
+    }
+
+    @Override
+    public List<Course> findStudentCoursesById(int id) {
+        return findById(id).getStudentCourses();
     }
 
     @Override
