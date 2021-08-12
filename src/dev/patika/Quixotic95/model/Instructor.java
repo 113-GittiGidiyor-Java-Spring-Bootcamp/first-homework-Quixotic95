@@ -1,6 +1,7 @@
 package dev.patika.Quixotic95.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,7 +18,7 @@ public class Instructor {
     private String phoneNumber;
 
     @OneToMany(mappedBy = "courseInstructor")
-    private List<Course> instructorCourses;
+    private List<Course> instructorCourses = new ArrayList<>();
 
     public Instructor() {
     }

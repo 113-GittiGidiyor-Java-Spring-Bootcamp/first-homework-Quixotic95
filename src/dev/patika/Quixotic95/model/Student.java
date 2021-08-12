@@ -2,6 +2,7 @@ package dev.patika.Quixotic95.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,7 +19,7 @@ public class Student {
     private char gender;
 
     @ManyToMany(mappedBy = "courseStudents")
-    private List<Course> studentCourses;
+    private List<Course> studentCourses = new ArrayList<>();
 
     public Student() {
     }

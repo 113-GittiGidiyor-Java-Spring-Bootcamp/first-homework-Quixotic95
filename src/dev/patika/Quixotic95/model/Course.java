@@ -1,6 +1,7 @@
 package dev.patika.Quixotic95.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,8 +16,8 @@ public class Course {
     private String courseCode;
     private double creditScore;
 
-    @ManyToMany(mappedBy = "studentCourses")
-    private List<Student> courseStudents;
+    @ManyToMany
+    private List<Student> courseStudents = new ArrayList<>();
 
     @ManyToOne
     private Instructor courseInstructor;
