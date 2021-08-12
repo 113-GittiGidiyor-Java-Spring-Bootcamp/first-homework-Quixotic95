@@ -44,7 +44,7 @@ public class CourseService implements CrudRepository<Course>, CourseRepository {
         try {
             em.getTransaction().begin();
 
-            Course foundCourse = em.find(Course.class, id);
+            Course foundCourse = findById(id);
             em.remove(foundCourse);
 
             em.getTransaction().commit();
@@ -76,7 +76,7 @@ public class CourseService implements CrudRepository<Course>, CourseRepository {
         try {
             em.getTransaction().begin();
 
-            Course foundCourse = em.find(Course.class, id);
+            Course foundCourse = findById(id);
             foundCourse.setCourseName(course.getCourseName());
             foundCourse.setCourseCode(course.getCourseCode());
             foundCourse.setCreditScore(course.getCreditScore());

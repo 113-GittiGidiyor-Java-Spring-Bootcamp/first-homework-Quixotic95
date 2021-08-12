@@ -43,7 +43,7 @@ public class StudentService implements CrudRepository<Student>, StudentRepositor
         try {
             em.getTransaction().begin();
 
-            Student foundStudent = em.find(Student.class, id);
+            Student foundStudent = findById(id);
             em.remove(foundStudent);
 
             em.getTransaction().commit();
@@ -75,7 +75,7 @@ public class StudentService implements CrudRepository<Student>, StudentRepositor
         try {
             em.getTransaction().begin();
 
-            Student foundStudent = em.find(Student.class, id);
+            Student foundStudent = findById(id);
             foundStudent.setName(student.getName());
             foundStudent.setAddress(student.getAddress());
             foundStudent.setBirthDate(student.getBirthDate());
