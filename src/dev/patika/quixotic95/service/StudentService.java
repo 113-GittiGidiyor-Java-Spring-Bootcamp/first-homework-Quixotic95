@@ -14,8 +14,8 @@ public class StudentService implements CrudRepository<Student>, StudentRepositor
     private final EntityManager em = EntityManagerUtil.getEntityManager("mysqlPU");
 
     @Override
-    public Student findById(int id) {
-        return em.find(Student.class, id);
+    public Student findById(int studentId) {
+        return em.find(Student.class, studentId);
     }
 
     @Override
@@ -39,11 +39,11 @@ public class StudentService implements CrudRepository<Student>, StudentRepositor
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(int studentId) {
         try {
             em.getTransaction().begin();
 
-            Student foundStudent = findById(id);
+            Student foundStudent = findById(studentId);
             em.remove(foundStudent);
 
             em.getTransaction().commit();
@@ -71,11 +71,11 @@ public class StudentService implements CrudRepository<Student>, StudentRepositor
     }
 
     @Override
-    public void update(Student student, int id) {
+    public void update(Student student, int studentId) {
         try {
             em.getTransaction().begin();
 
-            Student foundStudent = findById(id);
+            Student foundStudent = findById(studentId);
             foundStudent.setName(student.getName());
             foundStudent.setAddress(student.getAddress());
             foundStudent.setBirthDate(student.getBirthDate());
@@ -96,12 +96,13 @@ public class StudentService implements CrudRepository<Student>, StudentRepositor
     }
 
     @Override
-    public List<Course> findStudentCoursesById(int id) {
-        return findById(id).getStudentCourses();
+    public List<Course> findStudentCoursesById(int studentId) {
+        return findById(studentId).getStudentCourses();
     }
 
     @Override
     public List<Course> findStudentCourses(Student student) {
         return find(student).getStudentCourses();
     }
+
 }

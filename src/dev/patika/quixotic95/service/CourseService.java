@@ -15,8 +15,8 @@ public class CourseService implements CrudRepository<Course>, CourseRepository {
     private final EntityManager em = EntityManagerUtil.getEntityManager("mysqlPU");
 
     @Override
-    public Course findById(int id) {
-        return em.find(Course.class, id);
+    public Course findById(int courseId) {
+        return em.find(Course.class, courseId);
     }
 
     @Override
@@ -40,11 +40,11 @@ public class CourseService implements CrudRepository<Course>, CourseRepository {
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(int courseId) {
         try {
             em.getTransaction().begin();
 
-            Course foundCourse = findById(id);
+            Course foundCourse = findById(courseId);
             em.remove(foundCourse);
 
             em.getTransaction().commit();
@@ -72,11 +72,11 @@ public class CourseService implements CrudRepository<Course>, CourseRepository {
     }
 
     @Override
-    public void update(Course course, int id) {
+    public void update(Course course, int courseId) {
         try {
             em.getTransaction().begin();
 
-            Course foundCourse = findById(id);
+            Course foundCourse = findById(courseId);
             foundCourse.setCourseName(course.getCourseName());
             foundCourse.setCourseCode(course.getCourseCode());
             foundCourse.setCreditScore(course.getCreditScore());
@@ -96,8 +96,8 @@ public class CourseService implements CrudRepository<Course>, CourseRepository {
     }
 
     @Override
-    public List<Student> findCourseStudentsById(int id) {
-        return findById(id).getCourseStudents();
+    public List<Student> findCourseStudentsById(int courseId) {
+        return findById(courseId).getCourseStudents();
     }
 
     @Override
@@ -106,12 +106,13 @@ public class CourseService implements CrudRepository<Course>, CourseRepository {
     }
 
     @Override
-    public Instructor findCourseInstructorById(int id) {
-        return findById(id).getCourseInstructor();
+    public Instructor findCourseInstructorById(int courseId) {
+        return findById(courseId).getCourseInstructor();
     }
 
     @Override
     public Instructor findCourseInstructor(Course course) {
         return find(course).getCourseInstructor();
     }
+
 }
