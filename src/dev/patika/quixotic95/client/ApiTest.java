@@ -1,5 +1,7 @@
 package dev.patika.quixotic95.client;
 
+import dev.patika.quixotic95.controller.CourseController;
+import dev.patika.quixotic95.controller.InstructorController;
 import dev.patika.quixotic95.controller.StudentController;
 import dev.patika.quixotic95.model.*;
 import dev.patika.quixotic95.utility.EntityManagerUtil;
@@ -19,17 +21,51 @@ public class ApiTest {
         }
 
         StudentController studentController = new StudentController();
+        CourseController courseController = new CourseController();
+        InstructorController instructorController = new InstructorController();
 
-
+        // print all students
         List<Student> students = studentController.findAllStudents();
-        for(Student student : students) {
+        for (Student student : students) {
             System.out.println(student);
         }
+        System.out.println("^^^^^^** All Students Printed **^^^^^^");
 
-        List<Course> courses = studentController.findStudentCoursesById(3);
-        for(Course course : courses) {
-            System.out.println(course);
+        // save new student
+        Student iAmTheStudent = new Student("Ahmet Emre OĞUZ", LocalDate.of(1995, Month.JULY, 26), "Istanbul, Turkey", 'M');
+        studentController.saveStudent(iAmTheStudent);
+        // check if the student is created
+        System.out.println(studentController.findStudentById(6));
+
+        // update the student
+        iAmTheStudent.setAddress("Ankara, Turkey");
+        studentController.updateStudent(iAmTheStudent, 6);
+        // check if the student is updated
+        System.out.println(studentController.findStudentById(6));
+
+        // delete the student
+        studentController.deleteStudentById(6);
+        // check if the student is deleted
+        System.out.println(studentController.findStudentById(6));
+
+        // some more CRUD test
+        /*
+        List<Course> studentsCourses = studentController.findStudentCoursesById(3);
+        for(Course course : studentsCourses) {
+            //System.out.println(course);
+            System.out.println(courseController.findCourseStudents(course));
         }
+
+        List<Course> coursesOfStudent1 = studentController.findStudentCoursesById(1);
+        System.out.println(coursesOfStudent1);
+
+        for (Course course : coursesOfStudent1) {
+            //System.out.println(course);
+            System.out.println(courseController.findCourseInstructor(course));
+        }
+
+        System.out.println(courseController.findCourseInstructorById(4));
+         */
 
         System.exit(0);
     }
