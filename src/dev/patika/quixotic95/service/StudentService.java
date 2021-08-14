@@ -34,7 +34,7 @@ public class StudentService implements CrudRepository<Student>, StudentRepositor
         } catch (Exception e) {
             em.getTransaction().rollback();
         } finally {
-            EntityManagerUtil.closeEntityManager(em);
+            //EntityManagerUtil.closeEntityManager(em);
         }
     }
 
@@ -50,7 +50,7 @@ public class StudentService implements CrudRepository<Student>, StudentRepositor
         } catch (Exception e) {
             em.getTransaction().rollback();
         } finally {
-            EntityManagerUtil.closeEntityManager(em);
+            //EntityManagerUtil.closeEntityManager(em);
         }
     }
 
@@ -66,7 +66,7 @@ public class StudentService implements CrudRepository<Student>, StudentRepositor
         } catch (Exception e) {
             em.getTransaction().rollback();
         } finally {
-            EntityManagerUtil.closeEntityManager(em);
+            //EntityManagerUtil.closeEntityManager(em);
         }
     }
 
@@ -87,7 +87,7 @@ public class StudentService implements CrudRepository<Student>, StudentRepositor
         } catch (Exception e) {
             em.getTransaction().rollback();
         } finally {
-            EntityManagerUtil.closeEntityManager(em);
+            //EntityManagerUtil.closeEntityManager(em);
         }
     }
 

@@ -35,7 +35,7 @@ public class CourseService implements CrudRepository<Course>, CourseRepository {
         } catch (Exception e) {
             em.getTransaction().rollback();
         } finally {
-            EntityManagerUtil.closeEntityManager(em);
+            //EntityManagerUtil.closeEntityManager(em);
         }
     }
 
@@ -51,7 +51,7 @@ public class CourseService implements CrudRepository<Course>, CourseRepository {
         } catch (Exception e) {
             em.getTransaction().rollback();
         } finally {
-            EntityManagerUtil.closeEntityManager(em);
+            //EntityManagerUtil.closeEntityManager(em);
         }
     }
 
@@ -67,7 +67,7 @@ public class CourseService implements CrudRepository<Course>, CourseRepository {
         } catch (Exception e) {
             em.getTransaction().rollback();
         } finally {
-            EntityManagerUtil.closeEntityManager(em);
+            //EntityManagerUtil.closeEntityManager(em);
         }
     }
 
@@ -87,7 +87,7 @@ public class CourseService implements CrudRepository<Course>, CourseRepository {
         } catch (Exception e) {
             em.getTransaction().rollback();
         } finally {
-            EntityManagerUtil.closeEntityManager(em);
+            //EntityManagerUtil.closeEntityManager(em);
         }
     }
 

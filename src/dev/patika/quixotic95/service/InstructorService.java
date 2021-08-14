@@ -34,7 +34,7 @@ public class InstructorService implements CrudRepository<Instructor>, Instructor
         } catch (Exception e) {
             em.getTransaction().rollback();
         } finally {
-            EntityManagerUtil.closeEntityManager(em);
+            //EntityManagerUtil.closeEntityManager(em);
         }
     }
 
@@ -50,7 +50,7 @@ public class InstructorService implements CrudRepository<Instructor>, Instructor
         } catch (Exception e) {
             em.getTransaction().rollback();
         } finally {
-            EntityManagerUtil.closeEntityManager(em);
+            //EntityManagerUtil.closeEntityManager(em);
         }
     }
 
@@ -66,7 +66,7 @@ public class InstructorService implements CrudRepository<Instructor>, Instructor
         } catch (Exception e) {
             em.getTransaction().rollback();
         } finally {
-            EntityManagerUtil.closeEntityManager(em);
+            //EntityManagerUtil.closeEntityManager(em);
         }
     }
 
@@ -86,7 +86,7 @@ public class InstructorService implements CrudRepository<Instructor>, Instructor
         } catch (Exception e) {
             em.getTransaction().rollback();
         } finally {
-            EntityManagerUtil.closeEntityManager(em);
+            //EntityManagerUtil.closeEntityManager(em);
         }
     }
 
